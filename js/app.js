@@ -35,12 +35,13 @@ class petBase{
     }
 }
 
-const pet = new petBase("")   
+const pet = new petBase(null) 
 
 const makePet = () =>{
    let name = prompt("What will you name your pet?", "spot"); 
     pet.name = name;
     console.log(pet);
+    timeStart();
 }
 
 
@@ -60,6 +61,7 @@ napBut.addEventListener("click", ()=>pet.nap());
 const playBut = document.querySelector("#play");
 playBut.addEventListener("click", ()=>pet.play());
 
+
 const statUp = () =>{
 
     pet.age++;
@@ -75,7 +77,16 @@ const statUp = () =>{
         let sleepMeter = document.querySelector("#sleepiness");
         pet.sleepiness = Math.max(0, pet.sleepiness);
         sleepMeter.innerText =pet.sleepiness;
+        
+        if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
+            alert(`${pet.name} is dead.`);
+            clearInterval(statTime);
+        }
 }
 
-const statTime = setInterval(statUp, 1000);
+let statTime = "";
+    //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 
+const timeStart =() =>{
+     statTime = setInterval(statUp, 1000);
+}//clock for all the stat and age ups. 
