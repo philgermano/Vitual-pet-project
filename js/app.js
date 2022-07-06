@@ -54,5 +54,5 @@ feedBut.addEventListener("click", ()=>pet.feed());
 const napBut = document.querySelector("#nap");
 napBut.addEventListener("click", ()=>pet.nap());
 
-const playBut = document.querySelector("#feed");
-feedBut.addEventListener("click", ()=>pet.feed());
+const playBut = document.querySelector("#play");
+playBut.addEventListener("click", ()=>pet.play());
