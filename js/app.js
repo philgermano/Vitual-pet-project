@@ -59,3 +59,23 @@ napBut.addEventListener("click", ()=>pet.nap());
 
 const playBut = document.querySelector("#play");
 playBut.addEventListener("click", ()=>pet.play());
+
+const statUp = () =>{
+
+    pet.age++;
+    pet.boredom++;
+        let dullMeter = document.querySelector("#boredom");
+        pet.boredom = Math.max(0, pet.boredom);
+        dullMeter.innerText = pet.boredom;
+    pet.hunger++;
+    let foodMeter = document.querySelector("#hunger");
+        pet.hunger = Math.max(0, pet.hunger);
+        foodMeter.innerText = pet.hunger;
+    pet.sleepiness++;    
+        let sleepMeter = document.querySelector("#sleepiness");
+        pet.sleepiness = Math.max(0, pet.sleepiness);
+        sleepMeter.innerText =pet.sleepiness;
+}
+
+const statTime = setInterval(statUp, 1000);
+
