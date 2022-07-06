@@ -10,9 +10,20 @@
 <body>
     <h1 id="title">Virtual Pet</h1>
         <section id="middle">
-            <div id="petZone">PET ACTIVE ZONE</div>
+            <div id="petZone"><button id="new-pet">new pet</button></div>
         </section>
-    <footer id="button-row"><button class="control" >PLAY</button><button class="control">FEED</button><button class="control">NAP</button><button class="control">EXERCISE</button><button class="control">SETTINGS</button></footer>
+        <section id="meter">
+           HUNGER <div id="hunger" class="stat">5</div>
+            SLEEPINESS<div id="sleepiness" class="stat">5</div>
+            BOREDOM<div id="boredom" class="stat">5</div>
+        </section>
+    <footer id="button-row">
+        <button class="control" id="play">PLAY</button>
+        <button class="control" id="feed">FEED</button>
+        <button class="control" id="nap">NAP</button>
+        <button class="control" id="exercise">EXERCISE</button>
+        <button class="control" id="settings">SETTINGS</button>
+    </footer>
     
             <script src="js/app.js"></script>
 </body>
