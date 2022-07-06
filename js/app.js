@@ -51,8 +51,8 @@ class petBase{
 const feedBut = document.querySelector("#feed");
 feedBut.addEventListener("click", ()=>pet.feed());
 
-const feedBut = document.querySelector("#feed");
-feedBut.addEventListener("click", ()=>pet.feed());
+const napBut = document.querySelector("#nap");
+napBut.addEventListener("click", ()=>pet.nap());
 
-const feedBut = document.querySelector("#feed");
+const playBut = document.querySelector("#feed");
 feedBut.addEventListener("click", ()=>pet.feed());
