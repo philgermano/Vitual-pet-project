@@ -1,0 +1,22 @@
+body{
+    height: 90%;
+    background-color: plum;
+}
+h1{
+    height: 10vh;
+}
+#middle{
+    height: 60vh;
+    background-color: blue;
+    background-image: url('../art/240_F_336400928_fxmbFcBlep2YduPyFVNcgiGEBhYGxDXS.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-position: center;
+    align-items: center;
+}
+
+footer{
+    height: 20h;
+    background-color: black;
+}
