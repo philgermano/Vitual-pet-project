@@ -4,19 +4,37 @@ body{
 }
 h1{
     height: 10vh;
+    font-size: 4em;
+    text-align: center;
 }
 #middle{
     height: 60vh;
     background-color: blue;
-    background-image: url('../art/240_F_336400928_fxmbFcBlep2YduPyFVNcgiGEBhYGxDXS.jpg');
+    background-image: url('../art/istockphoto-1290270631-170667a.jpg');
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: 100%;
-    background-position: center;
+    background-position: 50% 50%;
     align-items: center;
+    display: flex;
+        align-items: center;
 }
 
+#petZone{
+        background-color: black;
+        color: white;
+        height: 25vh;
+        width: 40vh;
+        margin: auto;
+        text-align: center;
+}
 footer{
+    display: flex;
+    justify-content: center;
     height: 20h;
     background-color: black;
+}
+
+.control{
+    padding: 0 20px 0 20px;
+    margin: 20px 40px 20px 40px;
 }
