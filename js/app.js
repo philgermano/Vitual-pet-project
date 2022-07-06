@@ -18,35 +18,38 @@ class petBase{
     feed(){
         this.hunger--;
         let foodMeter = document.querySelector("#hunger");
+        this.hunger = Math.max(0, this.hunger);
         foodMeter.innerText = this.hunger;
     }
     nap(){
         this.sleepiness--
         let sleepMeter = document.querySelector("#sleepiness");
-        sleepMeter.innerText = this.sleepiness;
+        this.sleepiness = Math.max(0, this.sleepiness);
+        sleepMeter.innerText =this.sleepiness;
     }
     play(){
         this.boredom--
         let dullMeter = document.querySelector("#boredom");
+        this.boredom = Math.max(0, this.boredom);
         dullMeter.innerText = this.boredom;
     }
 }
 
-// const makePet = () =>{
-//    let name = prompt("What will you name your pet?", "spot")
+const pet = new petBase("")   
 
-//     let pet = new petBase(name)     
-
-//     console.log(pet);
-// }
+const makePet = () =>{
+   let name = prompt("What will you name your pet?", "spot"); 
+    pet.name = name;
+    console.log(pet);
+}
 
 
 //let name = prompt("What will you name your pet?", "spot")
 
-    let pet = new petBase("whatever")
+    //let pet = new petBase("whatever")
 
-// const startBut = document.querySelector("#new-pet");
-// startBut.addEventListener("click", makePet);
+ const startBut = document.querySelector("#new-pet");
+ startBut.addEventListener("click", makePet);
 
 const feedBut = document.querySelector("#feed");
 feedBut.addEventListener("click", ()=>pet.feed());
