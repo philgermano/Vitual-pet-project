@@ -28,8 +28,8 @@ h1{
         display: flex;
         align-items: center;
 }
-#new-pet{
-    margin: 42%;
+#new-pet, #petSpr{
+    margin: auto;
     padding: 0 20px 0 20px;
 }
 
@@ -60,4 +60,8 @@ footer{
 
 .stat{
     font-size: 3em;
+}
+
+#petSpr{
+    color:blue;
 }

@@ -5,6 +5,24 @@
 
 // a pet class that will be used to make the pet. 
 
+//////TO DO. Make age have a slot on the stat bar. Maybe also pet name. 
+/////Need to spawn in a pet image and delete the make pet button on clicking of the new pet button
+///// find better assets to use. Maybe make myself.
+//////make pet button not centered on mac screen. can do 50% but account for the width of the button to actually make it direct center of playpen.
+
+let statTime = "";
+    //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
+
+let baseTime = 5000;
+
+//let buttonRow = "main";   
+// const mainMenu = ["FEED", "NAP", "PLAY", "EXERCISE", "SETTINGS"];
+// const settingMenu = ["SPEED UP", "SLOW DOWN", "SOMETHING", "WAHTEVER", "MAIN MENU"]; 
+//was gonna swap inner text to the array for what buttons are up. didn;t work quickly so setting aside
+
+
+//base value declarations above this line
+///////////////////////////////////////////
 
 class petBase{
     constructor(name) {
@@ -42,6 +60,14 @@ const makePet = () =>{
     pet.name = name;
     console.log(pet);
     timeStart();
+        //pet sprite creation
+        const petSpr = document.createElement("img")
+        petSpr.src = "art/sprite bad.png";
+        const playPen = document.querySelector("#petZone");
+        //petSpr.style.height = "300px";
+        petSpr.style.margin = "auto auto";
+        playPen.append(petSpr)
+        startBut.remove();
 }
 
 
@@ -61,6 +87,18 @@ napBut.addEventListener("click", ()=>pet.nap());
 const playBut = document.querySelector("#play");
 playBut.addEventListener("click", ()=>pet.play());
 
+const fastBut = document.querySelector("#fast");
+ fastBut.addEventListener("click",() =>{
+    clearInterval(statTime);
+    statTime = setInterval(statUp, (baseTime /= 2));
+    console.log(baseTime);
+});
+
+const slowBut = document.querySelector("#slow");
+ slowBut.addEventListener("click",() =>{clearInterval(statTime);
+    statTime = setInterval(statUp, (baseTime *= 2));
+    console.log(baseTime);
+});
 
 const statUp = () =>{
 
@@ -84,9 +122,19 @@ const statUp = () =>{
         }
 }
 
-let statTime = "";
-    //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 
 const timeStart =() =>{
-     statTime = setInterval(statUp, 1000);
+     clearInterval(statTime);
+     statTime = setInterval(statUp, (baseTime));
+        console.log(baseTime);
 }//clock for all the stat and age ups. 
+
+// if (buttonRow = "settings"){
+//     let tarBut = document.querySelector("#settings")
+//     tarBut.innerText = settingMenu[4];
+// }
+// if (buttonRow = "main"){
+//     let tarBut = document.querySelector("#settings")
+//     tarBut.innerText = mainMenu[4];
+// }
+//CURRENTLY NOT FUNCTIONING. IGNORE UNTIL WE WANT TO TRY AND GET A SECOND LIST OF MENU OPTIONS UP AND RUNNING,
