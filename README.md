@@ -51,4 +51,10 @@ TO DO
 ---------
 make pet image wander the screen ***keyframes***
 Change background to fit napping vs eating
- 
+age displayed and increasing
+deploy to github pages(recording 7/6)
+
+CHALLENGES AND ISSUES
+---------
+Dont know how to spell(typos)
+figuring out how to turn off setInterval when pet dies so it doesn't keep ticking up the boredom (timer was declared in a function initially so scope issues made me unable to locate it later to stop)
