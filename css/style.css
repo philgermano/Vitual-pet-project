@@ -67,11 +67,12 @@ footer{
 }
 
 @keyframes monster {
-    0%   {left:0px; top:0px;}
-    25%  {left:50px; top:0px;}
-    50%  {left:50px; top:50px;}
-    75%  {left:0px; top:50px;}
-    100% {left:0px; top:0px;}
+    from { transform : translateX(0) }
+    37%  { transform : translateX(-20%) }
+    40%  { transform : translateX(-40%) }
+    77%  { transform : translateX(-60%) }
+    97%  { transform : translateX(-80%) }
+    to   { transform : translateX(0%) }
 }
 
 #petSpr{

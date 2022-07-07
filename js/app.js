@@ -44,7 +44,7 @@ const makePet = () =>{
              const petSpr = document.createElement("img");
              petSpr.setAttribute("id", "petSprite");
              petSpr.setAttribute("class", "slideright");
-             petSpr.style.height = "50px";
+             petSpr.style.width = "50px";
              petSpr.style.margin = "auto auto";
              ///setting initial state machine
              petState = "egg";
@@ -97,12 +97,9 @@ const animationGo = () =>{
         }else if (sprite === slime){
                 let petSpr = document.querySelector("#petSprite");
                 petSpr.style.animation = "monster 4s infinite";
-                //console.log(petSpr);
-                
-                ///Just to test to make sure i am running this section and keyframs will fire
-                //const playPen = document.querySelector("footer");
-                //console.log(playPen);
-               //playPen.style.animation = "example 4s infinite";    
+                //petSpr.style.animation = "example 4s infinite";
+                //works as example with color change. gotta figure why movement isn't
+                //console.log(petSpr)       
 
                 if(petIn < 3){
                     petIn++;
