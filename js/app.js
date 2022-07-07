@@ -18,7 +18,7 @@ let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png", "art/e
 let slime =["art/pet1/sprite bad.png", "art/pet1/sprite bad.png", "art/pet1/sprite bad.png","art/pet1/sprite bad.png"]
 
 let petIn = 0;
-let petState = "";
+let petState = "egg";
 let sprite = eggImg;
 
 //can change what array sprite points to so everything can be done with one timer
@@ -38,11 +38,10 @@ const spawnPet = () =>{
 const makePet = () =>{
     let name = prompt("What will you name your pet?", "spot"); 
      pet.name = name;
-     console.log(pet);
+     //console.log(pet);
      timeStart();
          //pet sprite creation 
              const petSpr = document.createElement("img");
-             //petSpr.src = eggImg[petIn];
              petSpr.setAttribute("id", "petSprite");
              petSpr.setAttribute("class", "slideright");
              petSpr.style.height = "50px";
@@ -83,19 +82,39 @@ const animationGo = () =>{
     aniTime = setInterval(()=>{
         let petSpr = document.querySelector("#petSprite");
         petSpr.src = sprite[petIn];   
-        if(petIn < 3){
-            petIn++;
-        } else{ 
-            //clearInterval(aniTime);
-            //spawnPet()
-            petIn = 0;
-            sprite = slime;
-            petState = "slime"
-        };
-            if (sprite !== "egg"){
-
+        //can clean up by having it check for state and advance. then if at end of image array change state and/or reset index to 0
+        if (petState === "egg"){
+            if(petIn < 3){
+                petIn++;
+            } else{ 
+                //increment image index array. if at end hatch egg and change state to first monster form
+                alert("Your egg is hatching!!")
+                petIn = 0;
+                sprite = slime;
+                petState = "slime";
+                
             }
-    }, 1000)
+        }else if (sprite === slime){
+                let petSpr = document.querySelector("#petSprite");
+                petSpr.style.animation = "monster 4s infinite";
+                //console.log(petSpr);
+                
+                ///Just to test to make sure i am running this section and keyframs will fire
+                //const playPen = document.querySelector("footer");
+                //console.log(playPen);
+               //playPen.style.animation = "example 4s infinite";    
+
+                if(petIn < 3){
+                    petIn++;
+                } else{ 
+                    petIn = 0;
+                    //increments index if not at image array end. if at end go back to start
+            }
+            //console.log(sprite);
+            //console.log(petSpr);
+            //console.log(petState);
+         }
+        } , 1000)
 
 }
 ///Boosts up states and checks for if pet dies    
@@ -104,7 +123,7 @@ const animationGo = () =>{
 const timeStart =() =>{
     clearInterval(statTime);
     statTime = setInterval(statUp, (baseTime));
-       console.log(baseTime);
+       //console.log(baseTime);
 }//clock for all the stat and age ups. 
 
 

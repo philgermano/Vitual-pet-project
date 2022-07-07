@@ -16,7 +16,8 @@ h1{
     background-position: 50% 50%;
     align-items: center;
     display: flex;
-        align-items: center;
+    align-items: center;
+
 }
 
 #petZone{
@@ -28,9 +29,11 @@ h1{
         display: flex;
         align-items: center;
 }
-#new-pet,{
+#new-pet{
     margin: auto;
     padding: 0 20px 0 20px;
+    animation-name: pet;
+    animation-duration: 4s;
 }
 
 
@@ -60,15 +63,23 @@ footer{
 
 .stat{
     font-size: 3em;
+    
+}
+
+@keyframes monster {
+    0%   {left:0px; top:0px;}
+    25%  {left:50px; top:0px;}
+    50%  {left:50px; top:50px;}
+    75%  {left:0px; top:50px;}
+    100% {left:0px; top:0px;}
 }
 
 #petSpr{
     color:blue;
     position: relative;
-    transition: 1s ease-in-out;
-
 }
-#petSpr.slideright:hover {
-    
-    transform: translate(3em,0);
+
+@keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
   }
