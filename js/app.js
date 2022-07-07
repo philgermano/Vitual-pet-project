@@ -11,19 +11,105 @@
 //////make pet button not centered on mac screen. can do 50% but account for the width of the button to actually make it direct center of playpen.
 
 let statTime = "";
+let aniTime = "";
     //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
-
 let baseTime = 5000;
+let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png", "art/egg/egg4.png"]
+let slime =["art/pet1/sprite bad.png", "art/pet1/sprite bad.png", "art/pet1/sprite bad.png","art/pet1/sprite bad.png"]
 
-//let buttonRow = "main";   
-// const mainMenu = ["FEED", "NAP", "PLAY", "EXERCISE", "SETTINGS"];
-// const settingMenu = ["SPEED UP", "SLOW DOWN", "SOMETHING", "WAHTEVER", "MAIN MENU"]; 
-//was gonna swap inner text to the array for what buttons are up. didn;t work quickly so setting aside
+let petIn = 0;
+let petState = "";
+let sprite = eggImg;
+
+//can change what array sprite points to so everything can be done with one timer
 
 
 //base value declarations above this line
 ///////////////////////////////////////////
 
+const spawnPet = () =>{
+    //change img to hatched pet and start new timer for animations and change frames. 
+    petState = "idle";
+    let petSpr = document.querySelector("#petSprite");
+    petSpr.src = "art/pet1/sprite bad.png";
+}
+
+
+const makePet = () =>{
+    let name = prompt("What will you name your pet?", "spot"); 
+     pet.name = name;
+     console.log(pet);
+     timeStart();
+         //pet sprite creation 
+             const petSpr = document.createElement("img");
+             //petSpr.src = eggImg[petIn];
+             petSpr.setAttribute("id", "petSprite");
+             petSpr.setAttribute("class", "slideright");
+             petSpr.style.height = "50px";
+             petSpr.style.margin = "auto auto";
+             ///setting initial state machine
+             petState = "egg";
+                     //find pet area and put pet in it.
+                     const playPen = document.querySelector("#petZone");
+                     playPen.append(petSpr);
+                     startBut.remove();
+                         animationGo();
+ }
+ //names pet, starts stat up timer, makes egg img and starts the hatch animation,  
+
+ const statUp = () =>{
+
+    pet.age++;
+    pet.boredom++;
+        let dullMeter = document.querySelector("#boredom");
+        pet.boredom = Math.max(0, pet.boredom);
+        dullMeter.innerText = pet.boredom;
+    pet.hunger++;
+    let foodMeter = document.querySelector("#hunger");
+        pet.hunger = Math.max(0, pet.hunger);
+        foodMeter.innerText = pet.hunger;
+    pet.sleepiness++;    
+        let sleepMeter = document.querySelector("#sleepiness");
+        pet.sleepiness = Math.max(0, pet.sleepiness);
+        sleepMeter.innerText =pet.sleepiness;
+        
+        if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
+            alert(`${pet.name} is dead.`);
+            clearInterval(statTime);
+        }
+}
+
+const animationGo = () =>{
+    aniTime = setInterval(()=>{
+        let petSpr = document.querySelector("#petSprite");
+        petSpr.src = sprite[petIn];   
+        if(petIn < 3){
+            petIn++;
+        } else{ 
+            //clearInterval(aniTime);
+            //spawnPet()
+            petIn = 0;
+            sprite = slime;
+            petState = "slime"
+        };
+            if (sprite !== "egg"){
+
+            }
+    }, 1000)
+
+}
+///Boosts up states and checks for if pet dies    
+
+
+const timeStart =() =>{
+    clearInterval(statTime);
+    statTime = setInterval(statUp, (baseTime));
+       console.log(baseTime);
+}//clock for all the stat and age ups. 
+
+
+////////// functions above here
+////////////////////////
 class petBase{
     constructor(name) {
         this.name = name,
@@ -55,20 +141,7 @@ class petBase{
 
 const pet = new petBase(null) 
 
-const makePet = () =>{
-   let name = prompt("What will you name your pet?", "spot"); 
-    pet.name = name;
-    console.log(pet);
-    timeStart();
-        //pet sprite creation
-        const petSpr = document.createElement("img")
-        petSpr.src = "art/sprite bad.png";
-        const playPen = document.querySelector("#petZone");
-        //petSpr.style.height = "300px";
-        petSpr.style.margin = "auto auto";
-        playPen.append(petSpr)
-        startBut.remove();
-}
+
 
 
 //let name = prompt("What will you name your pet?", "spot")
@@ -100,34 +173,8 @@ const slowBut = document.querySelector("#slow");
     console.log(baseTime);
 });
 
-const statUp = () =>{
-
-    pet.age++;
-    pet.boredom++;
-        let dullMeter = document.querySelector("#boredom");
-        pet.boredom = Math.max(0, pet.boredom);
-        dullMeter.innerText = pet.boredom;
-    pet.hunger++;
-    let foodMeter = document.querySelector("#hunger");
-        pet.hunger = Math.max(0, pet.hunger);
-        foodMeter.innerText = pet.hunger;
-    pet.sleepiness++;    
-        let sleepMeter = document.querySelector("#sleepiness");
-        pet.sleepiness = Math.max(0, pet.sleepiness);
-        sleepMeter.innerText =pet.sleepiness;
-        
-        if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
-            alert(`${pet.name} is dead.`);
-            clearInterval(statTime);
-        }
-}
 
 
-const timeStart =() =>{
-     clearInterval(statTime);
-     statTime = setInterval(statUp, (baseTime));
-        console.log(baseTime);
-}//clock for all the stat and age ups. 
 
 // if (buttonRow = "settings"){
 //     let tarBut = document.querySelector("#settings")

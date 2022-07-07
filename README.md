@@ -54,6 +54,9 @@ Change background to fit napping vs eating
 age displayed and increasing
 deploy to github pages(recording 7/6)
 
+
+USe a single 1 second timer and then have it bump variables that will trigger functions. Why use a dozen times when one will do.
+
 CHALLENGES AND ISSUES
 ---------
 Dont know how to spell(typos)

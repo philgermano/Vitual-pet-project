@@ -28,7 +28,7 @@ h1{
         display: flex;
         align-items: center;
 }
-#new-pet, #petSpr{
+#new-pet,{
     margin: auto;
     padding: 0 20px 0 20px;
 }
@@ -64,4 +64,11 @@ footer{
 
 #petSpr{
     color:blue;
+    position: relative;
+    transition: 1s ease-in-out;
+
 }
+#petSpr.slideright:hover {
+    
+    transform: translate(3em,0);
+  }
