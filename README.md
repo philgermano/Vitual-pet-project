@@ -50,20 +50,22 @@ age displayed and increasing
 
 TO DO
 ---------
-make pet image wander the screen ***keyframes*** Saorta there needs improvement but base done
+make pet image wander the screen ***keyframes*** Saorta there needs improvement but base done. need to add more options in. set duration and can use a time to know when they finish. like if each pass takes 6 seconds.
 Change background to fit napping vs eating
 deploy to github pages(recording 7/6)
 
-
-USe a single 1 second timer and then have it bump variables that will trigger functions. Why use a dozen timers when one will do.
-
+need new playzone background image. white box looks bad. needs to darken when pet sleep is hit. 
+add detail to tamagatchi image background. stars or something.
 
 set animations for pet will sleep and eat. use state machine to allow inputs only when awake
 
 set up evolution to new sprite set and stuff when age reaches 10
+
+
 CHALLENGES AND ISSUES
 ---------
 Dont know how to spell(typos)
 figuring out how to turn off setInterval when pet dies so it doesn't keep ticking up the boredom (timer was declared in a function initially so scope issues made me unable to locate it later to stop)
 finding the right set of properties and wording to get the pet to move with keyframe animations.
+set a ton of my css using vh and vw and ended up swapping it all to a set size when i noticed it adjusting poorly to my small laptop screen.
 
