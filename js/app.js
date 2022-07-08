@@ -12,11 +12,12 @@
 
 let statTime = "";
 let aniTime = "";
+let animationTick = 1000;
     //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 let baseTime = 5000;
-let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png", "art/egg/egg4.png"]
-let slime =["art/pet1/sprite bad.png", "art/pet1/sprite bad.png", "art/pet1/sprite bad.png","art/pet1/sprite bad.png"]
-
+let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png",  "art/egg/egg4.png"]
+let slime =["art/pet1/idle/slime-idle-0.png", "art/pet1/idle/slime-idle-1.png", "art/pet1/idle/slime-idle-2.png","art/pet1/idle/slime-idle-3.png"]
+let dead =["art/pet1/dead/slime-die-0.png", "art/pet1/dead/slime-die-1.png", "art/pet1/dead/slime-die-2.png", "art/pet1/dead/slime-die-3.png"]
 let petIn = 0;
 let petState = "egg";
 let sprite = eggImg;
@@ -27,26 +28,21 @@ let sprite = eggImg;
 //base value declarations above this line
 ///////////////////////////////////////////
 
-const spawnPet = () =>{
-    //change img to hatched pet and start new timer for animations and change frames. 
-    petState = "idle";
-    let petSpr = document.querySelector("#petSprite");
-    petSpr.src = "art/pet1/sprite bad.png";
-}
+// const spawnPet = () =>{
+//     //change img to hatched pet and start new timer for animations and change frames. 
+//     petState = "idle";
+//     let petSpr = document.querySelector("#petSprite");
+//     petSpr.src = "art/pet1/sprite bad.png";
+// }
 
 
 const makePet = () =>{
-    let name = prompt("What will you name your pet?", "spot"); 
-     pet.name = name;
-     let target = document.querySelector("#name")
-     target.innerText = pet.name;
      //console.log(pet);
-     timeStart();
          //pet sprite creation 
              const petSpr = document.createElement("img");
              petSpr.setAttribute("id", "petSprite");
              petSpr.setAttribute("class", "slideright");
-             petSpr.style.width = "50px";
+             petSpr.style.width = "100px";
              petSpr.style.margin = "auto auto";
              ///setting initial state machine
              petState = "egg";
@@ -80,10 +76,16 @@ const makePet = () =>{
         if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
             alert(`${pet.name} is dead.`);
             clearInterval(statTime);
+            petState = "dead";
+            petIn = 0;
+            sprite = dead;
+            let petSpr = document.querySelector("#petSprite");
+                petSpr.style.animation = "";
         }
 }
 
 const animationGo = () =>{
+    clearInterval(aniTime);
     aniTime = setInterval(()=>{
         let petSpr = document.querySelector("#petSprite");
         petSpr.src = sprite[petIn];   
@@ -97,17 +99,26 @@ const animationGo = () =>{
                 petIn = 0;
                 sprite = slime;
                 petState = "slime";
-                
+                timeStart();
+                let name = prompt("What will you name your pet?", "spot"); 
+                pet.name = name;
+                let target = document.querySelector("#name")
+                target.innerText = pet.name;
+                animationTick = 150;
+                clearInterval(aniTime);
+                animationGo();
             }
         }else if (sprite === slime){
                 let petSpr = document.querySelector("#petSprite");
-                petSpr.style.animation = "monster 4s infinite";
+                petSpr.style.animation = "monster 6s infinite";
+                petSpr.style.animationTimingFunction= "linear";
                 //petSpr.style.animation = "example 4s infinite";
                 //works as example with color change. gotta figure why movement isn't
                 //console.log(petSpr)       
 
                 if(petIn < 3){
                     petIn++;
+                    console.log(aniTime);
                 } else{ 
                     petIn = 0;
                     //increments index if not at image array end. if at end go back to start
@@ -116,7 +127,12 @@ const animationGo = () =>{
             //console.log(petSpr);
             //console.log(petState);
          }
-        } , 1000)
+         else if (petState === "dead"){
+            if(petIn < 3){
+                petIn++
+            }
+         }
+        } , animationTick)
 
 }
 ///Boosts up states and checks for if pet dies    
@@ -173,25 +189,41 @@ const pet = new petBase(null)
  startBut.addEventListener("click", makePet);
 
 const feedBut = document.querySelector("#feed");
-feedBut.addEventListener("click", ()=>pet.feed());
+feedBut.addEventListener("click", ()=>{
+    pet.feed();
+    feedBut.style.backgroundColor = 'grey';
+    setTimeout(()=>{ feedBut.style.backgroundColor = 'aqua'}, 500)
+    });
 
 const napBut = document.querySelector("#nap");
-napBut.addEventListener("click", ()=>pet.nap());
+napBut.addEventListener("click", ()=>{
+    pet.nap();
+    napBut.style.backgroundColor = 'grey';
+    setTimeout(()=>{ napBut.style.backgroundColor = 'aqua'}, 500)
+    });
 
 const playBut = document.querySelector("#play");
-playBut.addEventListener("click", ()=>pet.play());
+playBut.addEventListener("click", ()=>{
+    pet.play();
+    playBut.style.backgroundColor = 'grey';
+    setTimeout(()=>{ playBut.style.backgroundColor = 'aqua'}, 500)
+    });
 
 const fastBut = document.querySelector("#fast");
  fastBut.addEventListener("click",() =>{
     clearInterval(statTime);
     statTime = setInterval(statUp, (baseTime /= 2));
     console.log(baseTime);
+    fastBut.style.backgroundColor = 'grey';
+    setTimeout(()=>{ fastBut.style.backgroundColor = 'aqua'}, 500)
 });
 
 const slowBut = document.querySelector("#slow");
  slowBut.addEventListener("click",() =>{clearInterval(statTime);
     statTime = setInterval(statUp, (baseTime *= 2));
     console.log(baseTime);
+    slowBut.style.backgroundColor = 'grey';
+    setTimeout(()=>{ slowBut.style.backgroundColor = 'aqua'}, 500)
 });
 
 

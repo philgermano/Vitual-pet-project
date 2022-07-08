@@ -18,7 +18,6 @@ h1{
     font-size: 110px;
     text-align: center;
     margin-top: 150px;
-    color: azure;
     font-family: 'Chewy', cursive;
     /* text-shadow: -1px 0 10px black, 0 1px 10px black, 1px 0 10px black, 0 -1px 10px black */
     -webkit-text-fill-color: WHITE;
@@ -94,12 +93,14 @@ footer{
 
 
 @keyframes monster {
+    /* translate ( X , then Y position change) 
+    set up a handful of them to run through*/
     from { transform : translateX(0) }
-    37%  { transform : translateX(-20%) }
-    40%  { transform : translateX(-40%) }
-    77%  { transform : translateX(-60%) }
-    97%  { transform : translateX(-80%) }
-    to   { transform : translateX(0%) }
+    25%  { transform: translate(20px, 20px); }
+    50%  { transform: translate(40px, 0px); }
+    75%  { transform: translate(0px, 0px); }
+    100%  { transform: translate(-30px, 30px); }
+    to   { transform: translate(0px, 0px); }
 }
 
 #petSpr{

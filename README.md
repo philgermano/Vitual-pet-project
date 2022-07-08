@@ -46,17 +46,21 @@ pet dies
 pet gains stats and player can reduce them with clicks
 player can name pet
 start button deletes itself and pet image is spawned in
+age displayed and increasing
 
 TO DO
 ---------
 make pet image wander the screen ***keyframes*** Saorta there needs improvement but base done
 Change background to fit napping vs eating
-age displayed and increasing
 deploy to github pages(recording 7/6)
 
 
 USe a single 1 second timer and then have it bump variables that will trigger functions. Why use a dozen timers when one will do.
 
+
+set animations for pet will sleep and eat. use state machine to allow inputs only when awake
+
+set up evolution to new sprite set and stuff when age reaches 10
 CHALLENGES AND ISSUES
 ---------
 Dont know how to spell(typos)
