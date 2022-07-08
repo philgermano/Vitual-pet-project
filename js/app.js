@@ -38,6 +38,8 @@ const spawnPet = () =>{
 const makePet = () =>{
     let name = prompt("What will you name your pet?", "spot"); 
      pet.name = name;
+     let target = document.querySelector("#name")
+     target.innerText = pet.name;
      //console.log(pet);
      timeStart();
          //pet sprite creation 

@@ -49,15 +49,17 @@ start button deletes itself and pet image is spawned in
 
 TO DO
 ---------
-make pet image wander the screen ***keyframes***
+make pet image wander the screen ***keyframes*** Saorta there needs improvement but base done
 Change background to fit napping vs eating
 age displayed and increasing
 deploy to github pages(recording 7/6)
 
 
-USe a single 1 second timer and then have it bump variables that will trigger functions. Why use a dozen times when one will do.
+USe a single 1 second timer and then have it bump variables that will trigger functions. Why use a dozen timers when one will do.
 
 CHALLENGES AND ISSUES
 ---------
 Dont know how to spell(typos)
 figuring out how to turn off setInterval when pet dies so it doesn't keep ticking up the boredom (timer was declared in a function initially so scope issues made me unable to locate it later to stop)
+finding the right set of properties and wording to get the pet to move with keyframe animations.
+
