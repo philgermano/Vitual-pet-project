@@ -72,7 +72,10 @@ const makePet = () =>{
     pet.sleepiness++;    
         let sleepMeter = document.querySelector("#sleepiness");
         pet.sleepiness = Math.max(0, pet.sleepiness);
-        sleepMeter.innerText =pet.sleepiness;
+        sleepMeter.innerText =pet.sleepiness;   
+    let ageMeter = document.querySelector("#age");
+        pet.age =  pet.age;
+        ageMeter.innerText =pet.age;    
         
         if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
             alert(`${pet.name} is dead.`);
