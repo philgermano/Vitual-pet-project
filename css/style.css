@@ -7,7 +7,7 @@
 
 body{
     height: 800px;
-    background-image: url('../art/egg-back.png');
+    background-image: url('../art/device/egg-back.png');
     background-repeat: no-repeat;
     background-size: 1200px ;
     background-position: center top;
@@ -26,19 +26,29 @@ h1{
 }
 
 #petZone{
-        background-color: white;
-        color: white;
-        height: 300px;
+    background-image: url('../art/device/VP mouth.png');
+        height: 400px;
         width: 600px;
+        background-repeat: no-repeat;
+        background-size: 900px 700px ;
+        background-position-y: -125px;
+        background-position-x: -105px;
         margin: auto;
         display: flex;
-        align-items: center;
+        align-items: center;        
 }
 #new-pet{
     margin: auto;
     padding: 0 20px 0 20px;
     animation-name: pet;
     animation-duration: 4s;
+    border-radius: 20px;
+    background-color: aqua;
+    border: 5px;
+    border-style: solid;
+    border-color: black;
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 25px;
 }
 
 
@@ -83,6 +93,10 @@ footer{
     font-family: 'Chewy', cursive;
     font-size: 25px;
     width: 600px;
+    border: 5px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5%;
 }
  .stat{
  font-size: 40px;

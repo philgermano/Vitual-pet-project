@@ -39,6 +39,7 @@ let sprite = eggImg;
 const makePet = () =>{
      //console.log(pet);
          //pet sprite creation 
+             confirm("Good luck raising your pet. Keep its hunger, sleepiness, and boredom below 10 or it will die. Help it live a long life and who knows what it’ll grow into.\n\n\n Use the fast or slow buttons to bump the in game speed up or down. \n\n Please enjoy yourself.")
              const petSpr = document.createElement("img");
              petSpr.setAttribute("id", "petSprite");
              petSpr.setAttribute("class", "slideright");
@@ -100,7 +101,7 @@ const animationGo = () =>{
                 sprite = slime;
                 petState = "slime";
                 timeStart();
-                let name = prompt("What will you name your pet?", "spot"); 
+                let name = prompt("What will you name your pet?", "Slib"); 
                 pet.name = name;
                 let target = document.querySelector("#name")
                 target.innerText = pet.name;
