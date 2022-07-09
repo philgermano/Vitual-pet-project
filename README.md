@@ -51,12 +51,12 @@ need new playzone background image. white box looks bad. needs to darken when pe
 make pet image wander the screen ***keyframes*** Sorta there needs improvement but base done. need to add more options in. set duration and can use a time to know when they finish. like if each pass takes 6 seconds.
 pet evolves
 
+
 TO DO
 ---------
 
 add detail to tamagatchi image background. stars or something.
 
-set animations for pet will sleep and eat. use state machine to allow inputs only when awake
 
 
 
