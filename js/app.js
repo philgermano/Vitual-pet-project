@@ -16,8 +16,14 @@ let animationTick = 1000;
     //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 let baseTime = 5000;
 let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png",  "art/egg/egg4.png"]
+
 let slime =["art/pet1/idle/slime-idle-0.png", "art/pet1/idle/slime-idle-1.png", "art/pet1/idle/slime-idle-2.png","art/pet1/idle/slime-idle-3.png"]
-let dead =["art/pet1/dead/slime-die-0.png", "art/pet1/dead/slime-die-1.png", "art/pet1/dead/slime-die-2.png", "art/pet1/dead/slime-die-3.png"]
+
+let deadSlime =["art/pet1/dead/slime-die-0.png", "art/pet1/dead/slime-die-1.png", "art/pet1/dead/slime-die-2.png", "art/pet1/dead/slime-die-3.png"]
+
+let worm = ["art/pet 2/idle/tile000.png","art/pet 2/idle/tile001.png", "art/pet 2/idle/tile002.png", "art/pet 2/idle/tile003.png", "art/pet 2/idle/tile004.png", "art/pet 2/idle/tile005.png", "art/pet 2/idle/tile006.png", "art/pet 2/idle/tile007.png", "art/pet 2/idle/tile008.png"]
+
+let deadWorm = ["art/pet 2/dead/dead000.png","art/pet 2/dead/dead001.png","art/pet 2/dead/dead002.png","art/pet 2/dead/dead003.png","art/pet 2/dead/dead004.png","art/pet 2/dead/dead005.png","art/pet 2/dead/dead006.png","art/pet 2/dead/dead007.png"]
 let petIn = 0;
 let petState = "egg";
 let sprite = eggImg;
@@ -39,7 +45,7 @@ let sprite = eggImg;
 const makePet = () =>{
      //console.log(pet);
          //pet sprite creation 
-             confirm("Good luck raising your pet. Keep its hunger, sleepiness, and boredom below 10 or it will die. Help it live a long life and who knows what it’ll grow into.\n\n\n Use the fast or slow buttons to bump the in game speed up or down. \n\n Please enjoy yourself.")
+             alert("Good luck raising your pet. Keep its hunger, sleepiness, and boredom below 10 or it will die. Help it live a long life and who knows what it’ll grow into.\n\n\n Use the fast or slow buttons to bump the in game speed up or down. \n\n Please enjoy yourself.")
              const petSpr = document.createElement("img");
              petSpr.setAttribute("id", "petSprite");
              petSpr.setAttribute("class", "slideright");
@@ -74,17 +80,37 @@ const makePet = () =>{
         pet.age =  pet.age;
         ageMeter.innerText =pet.age;    
         
+        if (pet.age >= 20){
+            sprite = worm;
+            petState = "worm";
+            let petSpr = document.querySelector("#petSprite");
+            petSpr.style.height = "300px";
+            petSpr.style.width = "300px";
+        }; 
+        
         if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
             alert(`${pet.name} is dead.`);
             clearInterval(statTime);
-            petState = "dead";
-            petIn = 0;
-            sprite = dead;
-            let petSpr = document.querySelector("#petSprite");
-                petSpr.style.animation = "";
-        }
-}
+            
 
+            if (sprite === slime){ 
+                    petState = "deadSlime";
+                    petIn = 0;
+                    sprite = deadSlime;
+                    let petSpr = document.querySelector("#petSprite");
+                    petSpr.style.animation = "";
+                }else if (sprite === worm){
+                    petState = "deadWorm";
+                    petIn = 0;
+                    sprite = deadWorm;
+                    let petSpr = document.querySelector("#petSprite");
+                    petSpr.style.animation = "";
+                    console.log(petState);
+                    console.log(sprite);
+        } 
+    }
+}
+ 
 const animationGo = () =>{
     clearInterval(aniTime);
     aniTime = setInterval(()=>{
@@ -109,7 +135,7 @@ const animationGo = () =>{
                 clearInterval(aniTime);
                 animationGo();
             }
-        }else if (sprite === slime){
+        }else if (petState === "slime"){
                 let petSpr = document.querySelector("#petSprite");
                 petSpr.style.animation = "monster 6s infinite";
                 petSpr.style.animationTimingFunction= "linear";
@@ -127,12 +153,34 @@ const animationGo = () =>{
             //console.log(sprite);
             //console.log(petSpr);
             //console.log(petState);
-         }
-         else if (petState === "dead"){
+         } else if (petState === "deadSlime"){
             if(petIn < 3){
                 petIn++
             }
-         }
+         }else if (petState === "deadWorm"){
+            if(petIn < 7){
+                petIn++
+            }
+        }else if (petState === "worm"){
+            let petSpr = document.querySelector("#petSprite");
+            petSpr.style.animation = "monster 6s infinite";
+            petSpr.style.animationTimingFunction= "linear";
+            //petSpr.style.animation = "example 4s infinite";
+            //works as example with color change. gotta figure why movement isn't
+            //console.log(petSpr)       
+
+            if(petIn < 8){
+                petIn++;
+                console.log(aniTime);
+            } else{ 
+                petIn = 0;
+                //increments index if not at image array end. if at end go back to start
+        }
+        //console.log(sprite);
+        //console.log(petSpr);
+        //console.log(petState)
+     }
+        
         } , animationTick)
 
 }
