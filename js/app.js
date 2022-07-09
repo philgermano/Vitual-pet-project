@@ -4,10 +4,17 @@ let statTime = "";
 let aniTime = "";
 let ageInc = 0;
 let animationTick = 1000;
+let petIn = 0;
+let petState = "egg";
+let sprite = eggImg;
+let inputStop = false;
     //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 let baseTime = 20000;
 let inputPause = 5000;
     //arrays of animation frames. time aniTime iterate through array to animate sprite.
+
+    //////IMAGE ARRAYS
+//#region 
 let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png",  "art/egg/egg4.png"]
 
 let slime =["art/pet1/idle/slime-idle-0.png", "art/pet1/idle/slime-idle-1.png", "art/pet1/idle/slime-idle-2.png","art/pet1/idle/slime-idle-3.png"]
@@ -23,11 +30,7 @@ let wormSleep = ["art/pet 2/sleep/sleep.png"]
 let wormPlay = ["art/pet 2/play/tile000.png", "art/pet 2/play/tile001.png", "art/pet 2/play/tile002.png", "art/pet 2/play/tile003.png", "art/pet 2/play/tile004.png", "art/pet 2/play/tile005.png", "art/pet 2/play/tile006.png", "art/pet 2/play/tile007.png", "art/pet 2/play/tile008.png", "art/pet 2/play/tile009.png", "art/pet 2/play/tile010.png", "art/pet 2/play/tile012.png", "art/pet 2/play/tile013.png", "art/pet 2/play/tile014.png", "art/pet 2/play/tile015.png"]
 
 let slimePlay = ["art/pet1/play/slime-attack-0.png", "art/pet1/play/slime-attack-1.png", "art/pet1/play/slime-attack-2.png", "art/pet1/play/slime-attack-3.png", "art/pet1/play/slime-attack-4.png"]
-let petIn = 0;
-let petState = "egg";
-let sprite = eggImg;
-
-let inputStop = false;
+//#endregion
 
 //base variable declarations above this line
 ///////////////////////////////////////////
