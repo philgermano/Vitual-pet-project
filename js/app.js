@@ -83,7 +83,7 @@ const makePet = () =>{
         pet.age =  pet.age;
         ageMeter.innerText =pet.age;    
         
-        if (pet.age >= 2 && petState === "slime"){
+        if (pet.age >= 20 && petState === "slime"){
             alert(`${pet.name} is evolving.`)
             sprite = worm;
             petState = "worm";
@@ -267,14 +267,15 @@ napBut.addEventListener("click", ()=>{
         playPen.setAttribute("id", "petZoneDark")
         let petSpr = document.querySelector("#petSprite");
             petSpr.style.animation = "";
-    setTimeout(()=>{ 
-        playPen.setAttribute("id", "petZone");
-        petSpr.style.animation = "monster";
-        roomDark = false;
-            if(sprite === wormSleep){
-                sprite = worm;
-            };
-        animationGo(); }, 2000)
+    setTimeout(()=>{  
+        if(petState !== "slimeDead" && petState !== "wormDead"){
+            playPen.setAttribute("id", "petZone");
+            petSpr.style.animation = "monster";
+            roomDark = false;
+                if(sprite === wormSleep){
+                    sprite = worm;
+                };
+            animationGo(); }}, 2000)
     }});
 
 const playBut = document.querySelector("#play");
