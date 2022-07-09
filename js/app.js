@@ -29,6 +29,7 @@ let petIn = 0;
 let petState = "egg";
 let sprite = eggImg;
 
+
 let inputStop = false;
 
 //base variable declarations above this line
