@@ -18,8 +18,5 @@ Get its age high enough and it'll evolve into a second form.
 
 Use the fast or slow buttons to bump the in game speed up or down. 
 
-TO DO:
-Set in timer for button inputs lockout.
-every button press set lockout by inputTime so othe buttons don't function. so that different keyframes can be used for sleeping or eating.
 
 

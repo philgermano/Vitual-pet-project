@@ -1,4 +1,5 @@
 let roomDark = false;
+let gameStart = false;
 let statTime = "";
 let aniTime = "";
 let ageInc = 0;
@@ -36,6 +37,7 @@ const makePet = () =>{
      //console.log(pet);
          //pet sprite creation 
              alert("Good luck raising your pet. Keep its hunger, sleepiness, and boredom below 10 or it will die. Help it live a long life and who knows what it’ll grow into.\n\n\n Use the fast or slow buttons to bump the in game speed up or down. \n\n Please enjoy yourself.")
+             gameStart = true;
                 const petSpr = document.createElement("img");
                     petSpr.setAttribute("id", "petSprite");
                     petSpr.setAttribute("class", "slideright");
@@ -280,25 +282,30 @@ const pet = new petBase(null)
         //decreases hunger. button changes color for a split second to show it was clicked.
 const feedBut = document.querySelector("#feed");
 feedBut.addEventListener("click", ()=>{
+    if(gameStart === true){
     pet.feed();
     feedBut.style.backgroundColor = 'grey';
     setTimeout(()=>{ feedBut.style.backgroundColor = 'aqua'}, 500)
-    });
+    }});
 
         //decreases sleepiness.
 const napBut = document.querySelector("#nap");
 napBut.addEventListener("click", ()=>{
+    if(gameStart === true){
     pet.nap();
     napBut.style.backgroundColor = 'grey';       
     setTimeout(()=>{ napBut.style.backgroundColor = 'aqua'}, 500)
         //DARKENS SCREEN AFTER PRESSING NAP sets sprite to a still sleeping one and stops movement.
         if (roomDark === false){
         clearInterval(aniTime);
-            if(petState === "worm"){
+        petIn = 0;
+            if(petState === "worm" || petState === "wormPlay"){
                 sprite = wormSleep;
                 petIn = 0
                 let petSpr = document.querySelector("#petSprite");
                 petSpr.src = sprite[petIn]; 
+            }else{
+                state = "slime"
             }
         roomDark = true;
         const playPen = document.querySelector("#petZone");
@@ -315,39 +322,44 @@ napBut.addEventListener("click", ()=>{
                     sprite = worm;
                 };
             animationGo(); }}, 2000)
-    }});
+    }}});
             //decreases boredom
 const playBut = document.querySelector("#play");
     playBut.addEventListener("click", ()=>{
-    pet.play();
-    playBut.style.backgroundColor = 'grey';
-    if (petState === "slime"){ 
-        petState = "slimePlay"
-        petIn = 0
-    }else if(petState === "worm") {
-        petIn = 0;
-        petState = "wormPlay";
-    }      
-    setTimeout(()=>{ playBut.style.backgroundColor = 'aqua'}, 500)
-    });
+    if(gameStart === true){
+        pet.play();
+        playBut.style.backgroundColor = 'grey';
+        if (petState === "slime"){ 
+            petState = "slimePlay"
+            petIn = 0
+        }else if(petState === "worm") {
+            petIn = 0;
+            petState = "wormPlay";
+        }      
+        setTimeout(()=>{ playBut.style.backgroundColor = 'aqua'}, 500)
+    }});
     
             //speeds up internal clock that time stat increase
 const fastBut = document.querySelector("#fast");
  fastBut.addEventListener("click",() =>{
-    clearInterval(statTime);
-    statTime = setInterval(statUp, (baseTime /= 2));
-    console.log(baseTime);
-    fastBut.style.backgroundColor = 'grey';
-    setTimeout(()=>{ fastBut.style.backgroundColor = 'aqua'}, 500)
+    if(gameStart === true){
+        clearInterval(statTime);
+        statTime = setInterval(statUp, (baseTime /= 2));
+        console.log(baseTime);
+        fastBut.style.backgroundColor = 'grey';
+        setTimeout(()=>{ fastBut.style.backgroundColor = 'aqua'}, 500)
+        }
 });
         //slows down internal clock that controls stat increases.
-const slowBut = document.querySelector("#slow");
- slowBut.addEventListener("click",() =>{clearInterval(statTime);
-    statTime = setInterval(statUp, (baseTime *= 2));
-    console.log(baseTime);
-    slowBut.style.backgroundColor = 'grey';
-    setTimeout(()=>{ slowBut.style.backgroundColor = 'aqua'}, 500)
-});
+const slowBut = document.querySelector("#slow");+
+            slowBut.addEventListener("click",() =>{
+        if(gameStart === true){
+            clearInterval(statTime);
+            statTime = setInterval(statUp, (baseTime *= 2));
+            console.log(baseTime);
+            slowBut.style.backgroundColor = 'grey';
+            setTimeout(()=>{ slowBut.style.backgroundColor = 'aqua'}, 500)
+}});
 
 
 ///////////
