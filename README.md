@@ -6,6 +6,7 @@ Goal create a digital pet.
 Pretty much finished.
 
 Assets used below.
+
 https://luizmelo.itch.io/fire-worm
 
 https://rvros.itch.io/pixel-art-animated-slime
