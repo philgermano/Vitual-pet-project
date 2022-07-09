@@ -78,7 +78,7 @@ const makePet = () =>{
         pet.age =  pet.age;
         ageMeter.innerText =pet.age;    
         
-        if (pet.age >= 3 && petState === "slime"){
+        if (pet.age >= 5 && petState === "slime"){
             alert(`${pet.name} is evolving.`)
             sprite = worm;
             petState = "worm";
