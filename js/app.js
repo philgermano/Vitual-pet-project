@@ -5,17 +5,28 @@ let ageInc = 0;
 let animationTick = 1000;
     //needed to declare the variable outside of the function so that clearInterval could target it and stop the timer.
 let baseTime = 20000;
+let inputPause = 5000;
     //arrays of animation frames. time aniTime iterate through array to animate sprite.
 let eggImg = ["art/egg/egg1.png", "art/egg/egg2.png", "art/egg/egg3.png",  "art/egg/egg4.png"]
+
 let slime =["art/pet1/idle/slime-idle-0.png", "art/pet1/idle/slime-idle-1.png", "art/pet1/idle/slime-idle-2.png","art/pet1/idle/slime-idle-3.png"]
+
 let deadSlime =["art/pet1/dead/slime-die-0.png", "art/pet1/dead/slime-die-1.png", "art/pet1/dead/slime-die-2.png", "art/pet1/dead/slime-die-3.png"]
+
 let worm = ["art/pet 2/idle/tile000.png","art/pet 2/idle/tile001.png", "art/pet 2/idle/tile002.png", "art/pet 2/idle/tile003.png", "art/pet 2/idle/tile004.png", "art/pet 2/idle/tile005.png", "art/pet 2/idle/tile006.png", "art/pet 2/idle/tile007.png", "art/pet 2/idle/tile008.png"]
+
 let deadWorm = ["art/pet 2/dead/dead000.png","art/pet 2/dead/dead001.png","art/pet 2/dead/dead002.png","art/pet 2/dead/dead003.png","art/pet 2/dead/dead004.png","art/pet 2/dead/dead005.png","art/pet 2/dead/dead006.png","art/pet 2/dead/dead007.png"]
+
 let wormSleep = ["art/pet 2/sleep/sleep.png"]
 
+let wormPlay = ["art/pet 2/play/tile000.png", "art/pet 2/play/tile001.png", "art/pet 2/play/tile002.png", "art/pet 2/play/tile003.png", "art/pet 2/play/tile004.png", "art/pet 2/play/tile005.png", "art/pet 2/play/tile006.png", "art/pet 2/play/tile007.png", "art/pet 2/play/tile008.png", "art/pet 2/play/tile009.png", "art/pet 2/play/tile010.png", "art/pet 2/play/tile012.png", "art/pet 2/play/tile013.png", "art/pet 2/play/tile014.png", "art/pet 2/play/tile015.png"]
+
+let slimePlay = ["art/pet1/play/slime-attack-0.png", "art/pet1/play/slime-attack-1.png", "art/pet1/play/slime-attack-2.png", "art/pet1/play/slime-attack-3.png", "art/pet1/play/slime-attack-4.png"]
 let petIn = 0;
 let petState = "egg";
 let sprite = eggImg;
+
+let inputStop = false;
 
 //base variable declarations above this line
 ///////////////////////////////////////////
@@ -65,11 +76,11 @@ const makePet = () =>{
         pet.age =  pet.age;
         ageMeter.innerText =pet.age;    
         
-        if (pet.age >= 10 && petState === "slime"){
+        if (pet.age >= 3 && petState === "slime"){
             alert(`${pet.name} is evolving.`)
             sprite = worm;
             petState = "worm";
-            let petSpr = document.querySelector("#petSprite");
+            //let petSpr = document.querySelector("#petSprite");
         }; 
                 //checks stats and if high enough pet dies.
         if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
@@ -128,7 +139,7 @@ const animationGo = () =>{
 
                 if(petIn < 3){
                     petIn++;
-                    console.log(aniTime);
+                    //console.log(aniTime);
                 } else{ 
                     petIn = 0;
                     //increments index if not at image array end. if at end go back to start
@@ -162,11 +173,53 @@ const animationGo = () =>{
             } else{ 
                 petIn = 0;
                 //increments index if not at image array end. if at end go back to start
-        }
+        }}else if (petState === "wormPlay"){
+
+            sprite = wormPlay;
+            // let petSpr = document.querySelector("#petSprite");
+            // petSpr.style.height = "300px";
+            // petSpr.style.width = "300px";
+            // petSpr.style.animation = "monster 6s infinite";
+            // petSpr.style.animationTimingFunction= "linear";
+            //petSpr.style.animation = "example 4s infinite";
+            //works as example with color change. gotta figure why movement isn't
+            //console.log(petSpr)       
+
+            if(petIn <= 14){
+                petIn++;
+                //console.log(aniTime);
+            } else{ 
+                petIn = 0;
+                sprite = worm; 
+                petSpr.src = sprite[petIn];
+                petState = "worm";
+                
+        
+            }
+        }else if (petState === "slimePlay"){
+            
+            sprite = slimePlay;  
+            let petSpr = document.querySelector("#petSprite");
+            petSpr.style.animation = "monster 6s infinite";
+            petSpr.style.animationTimingFunction= "linear";
+            //console.log(petSpr)  
+            //console.log(petSpr)       
+                    //console.log("in play");
+            if(petIn <= 4){
+                //console.log("in play in <4");
+                petIn++;
+                //console.log(aniTime);
+            } else{ 
+                //console.log("in play log =4");
+                petIn = 0;
+                sprite = slime;
+                petSpr.src = sprite[petIn];
+                petState = "slime";          
+                //increments index if not at image array end. if at end go back to start
         //console.log(sprite);
         //console.log(petSpr);
         //console.log(petState)
-     }
+            }}
                 //variable time to speed up after hatching.
         } , animationTick)
 
@@ -268,8 +321,16 @@ const playBut = document.querySelector("#play");
     playBut.addEventListener("click", ()=>{
     pet.play();
     playBut.style.backgroundColor = 'grey';
+    if (petState === "slime"){ 
+        petState = "slimePlay"
+        petIn = 0
+    }else if(petState === "worm") {
+        petIn = 0;
+        petState = "wormPlay";
+    }      
     setTimeout(()=>{ playBut.style.backgroundColor = 'aqua'}, 500)
     });
+    
             //speeds up internal clock that time stat increase
 const fastBut = document.querySelector("#fast");
  fastBut.addEventListener("click",() =>{
@@ -287,3 +348,11 @@ const slowBut = document.querySelector("#slow");
     slowBut.style.backgroundColor = 'grey';
     setTimeout(()=>{ slowBut.style.backgroundColor = 'aqua'}, 500)
 });
+
+
+///////////
+/////
+/////TO DO.
+// TO DO:
+// Set in timer for button inputs lockout.
+// every button press set lockout by inputTime so othe buttons don't function. so that different keyframes can be used for sleeping or eating.
