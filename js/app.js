@@ -250,6 +250,10 @@ napBut.addEventListener("click", ()=>{
     pet.nap();
     napBut.style.backgroundColor = 'grey';
     setTimeout(()=>{ napBut.style.backgroundColor = 'aqua'}, 500)
+        //DARKENS SCREEN AFTER PRESSING NAP
+        const playPen = document.querySelector("#petZone");
+        playPen.setAttribute("id", "petZoneDark")
+    setTimeout(()=>{ playPen.setAttribute("id", "petZone")}, 2000)
     });
 
 const playBut = document.querySelector("#play");

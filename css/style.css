@@ -37,6 +37,20 @@ h1{
         display: flex;
         align-items: center;        
 }
+
+#petZoneDark{
+        background-image: url('../art/device/VP mouth.png'),url('../art/device/VP mouth dark.png');
+        background-blend-mode: darken;
+        height: 400px;
+        width: 600px;
+        background-repeat: no-repeat;
+        background-size: 900px 700px ;
+        background-position-y: -125px;
+        background-position-x: -105px;
+        margin: auto;
+        display: flex;
+        align-items: center; 
+}
 #new-pet{
     margin: auto;
     padding: 0 20px 0 20px;
