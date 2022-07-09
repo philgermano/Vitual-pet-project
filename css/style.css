@@ -38,7 +38,7 @@ h1{
         align-items: center;        
 }
 
-#petZoneDark{
+#petZoneDark {
         background-image: url('../art/device/VP mouth.png'),url('../art/device/VP mouth dark.png');
         background-blend-mode: darken;
         height: 400px;

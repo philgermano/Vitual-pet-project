@@ -9,7 +9,7 @@
 /////Need to spawn in a pet image and delete the make pet button on clicking of the new pet button
 ///// find better assets to use. Maybe make myself.
 //////make pet button not centered on mac screen. can do 50% but account for the width of the button to actually make it direct center of playpen.
-
+let roomDark = false;
 let statTime = "";
 let aniTime = "";
 let animationTick = 1000;
@@ -24,6 +24,9 @@ let deadSlime =["art/pet1/dead/slime-die-0.png", "art/pet1/dead/slime-die-1.png"
 let worm = ["art/pet 2/idle/tile000.png","art/pet 2/idle/tile001.png", "art/pet 2/idle/tile002.png", "art/pet 2/idle/tile003.png", "art/pet 2/idle/tile004.png", "art/pet 2/idle/tile005.png", "art/pet 2/idle/tile006.png", "art/pet 2/idle/tile007.png", "art/pet 2/idle/tile008.png"]
 
 let deadWorm = ["art/pet 2/dead/dead000.png","art/pet 2/dead/dead001.png","art/pet 2/dead/dead002.png","art/pet 2/dead/dead003.png","art/pet 2/dead/dead004.png","art/pet 2/dead/dead005.png","art/pet 2/dead/dead006.png","art/pet 2/dead/dead007.png"]
+
+let wormSleep = ["art/pet 2/sleep/sleep.png"]
+
 let petIn = 0;
 let petState = "egg";
 let sprite = eggImg;
@@ -85,8 +88,6 @@ const makePet = () =>{
             sprite = worm;
             petState = "worm";
             let petSpr = document.querySelector("#petSprite");
-            petSpr.style.height = "300px";
-            petSpr.style.width = "300px";
         }; 
         
         if(pet.hunger > 9 || pet.sleepiness > 9 || pet.boredom > 9){
@@ -164,6 +165,8 @@ const animationGo = () =>{
             }
         }else if (petState === "worm"){
             let petSpr = document.querySelector("#petSprite");
+            petSpr.style.height = "300px";
+            petSpr.style.width = "300px";
             petSpr.style.animation = "monster 6s infinite";
             petSpr.style.animationTimingFunction= "linear";
             //petSpr.style.animation = "example 4s infinite";
@@ -251,10 +254,28 @@ napBut.addEventListener("click", ()=>{
     napBut.style.backgroundColor = 'grey';
     setTimeout(()=>{ napBut.style.backgroundColor = 'aqua'}, 500)
         //DARKENS SCREEN AFTER PRESSING NAP
+        if (roomDark === false){
+        clearInterval(aniTime);
+            if(petState === "worm"){
+                sprite = wormSleep;
+                petIn = 0
+                let petSpr = document.querySelector("#petSprite");
+                petSpr.src = sprite[petIn]; 
+            }
+        roomDark = true;
         const playPen = document.querySelector("#petZone");
         playPen.setAttribute("id", "petZoneDark")
-    setTimeout(()=>{ playPen.setAttribute("id", "petZone")}, 2000)
-    });
+        let petSpr = document.querySelector("#petSprite");
+            petSpr.style.animation = "";
+    setTimeout(()=>{ 
+        playPen.setAttribute("id", "petZone");
+        petSpr.style.animation = "monster";
+        roomDark = false;
+            if(sprite === wormSleep){
+                sprite = worm;
+            };
+        animationGo(); }, 2000)
+    }});
 
 const playBut = document.querySelector("#play");
 playBut.addEventListener("click", ()=>{
